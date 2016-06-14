@@ -1,0 +1,75 @@
+#cardTable {
+	background-color: #78AB46;
+	width : 1200px;
+	height: 800px;
+	margin: 0 auto;
+	margin-top: 50px;
+	border: 3px solid #E50000;
+}
+
+
+#cpu1, #cpu2, #board {
+	display: inline-block;
+	position: absolute;
+}
+
+#cpu1 {
+	width: 300px;
+	height: 450px;
+	margin-top: 50px;
+}
+
+#cpu2 {
+	width: 300px;
+	height: 450px;
+	margin-top: 50px;
+	margin-left: 900px;
+}
+
+#player {
+	width: 800px;
+	height: 300px;
+	margin: 0 auto;
+	margin-top: 43%;
+}
+
+#player img {
+	float: left; 
+	margin: 0 auto;
+ 	margin-top: 20px;
+ 	margin-right:-70px;
+}
+
+#myCards {
+   display: table;
+    margin: 0 auto;
+}
+
+#cpu1Cards, #cpu2Cards, #board {
+	display: table;
+    margin: 0 auto;
+}
+
+#cpu1Cards img , #cpu2Cards img {
+	float: left; 
+	margin: 0 auto;
+ 	margin-top: 0px;
+ 	margin-right:-120px;
+}
+
+
+#cpu1Cards, #cpu2Cards  {
+	-ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+    
+}
+
+#board {
+	border: 3px solid #E50000;
+	padding: 10px;
+	
+	margin-top: 150px;
+	margin-left: 365px;
+}
+
