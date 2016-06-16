@@ -12,7 +12,7 @@ class GameManagerTest extends Specification{
 	def setup() {
 		GameBuilder builder = Mock()
 		builder.build(_) >> new Game()
-		gameManager = new GameManager(builder: builder)
+		gameManager = new GameManager(gameBuilder: builder)
 	}
 	
 	def "should create sample game" () {

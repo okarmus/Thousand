@@ -1,5 +1,6 @@
 package org.okarmus.game.configuration;
 
+import org.okarmus.game.model.builder.DistributionBuilder;
 import org.okarmus.game.model.builder.GameBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,4 +13,9 @@ public class ServiceConfiguration {
 		return new GameBuilder();
 	}
 
+	@Bean
+	public DistributionBuilder distributionBuilder() {
+		return new DistributionBuilder();
+	}
+	
 }
