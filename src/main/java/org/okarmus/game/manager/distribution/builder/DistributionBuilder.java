@@ -1,12 +1,12 @@
-package org.okarmus.game.model.builder;
+package org.okarmus.game.manager.distribution.builder;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.okarmus.game.model.Distribution;
-import org.okarmus.game.model.Game;
-import org.okarmus.game.model.PlayerCards;
 import org.okarmus.game.model.card.CardDeck;
+import org.okarmus.game.model.distribution.Distribution;
+import org.okarmus.game.model.game.Game;
+import org.okarmus.game.model.player.PlayerCards;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class DistributionBuilder {

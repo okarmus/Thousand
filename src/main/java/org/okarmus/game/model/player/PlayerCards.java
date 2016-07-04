@@ -1,4 +1,4 @@
-package org.okarmus.game.model;
+package org.okarmus.game.model.player;
 
 import java.util.List;
 

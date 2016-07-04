@@ -1,6 +1,8 @@
-package org.okarmus.game.model;
+package org.okarmus.game.model.distribution;
 
 import java.util.Map;
+
+import org.okarmus.game.model.player.PlayerCards;
 
 public class Distribution {
 	

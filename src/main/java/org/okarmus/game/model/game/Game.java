@@ -1,6 +1,8 @@
-package org.okarmus.game.model;
+package org.okarmus.game.model.game;
 
+import org.okarmus.game.model.distribution.Distribution;
 import org.okarmus.game.model.player.Player;
+import org.okarmus.game.model.player.PlayerCards;
 import org.okarmus.game.model.player.PlayerType;
 
 public class Game {

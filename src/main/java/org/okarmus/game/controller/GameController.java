@@ -1,7 +1,7 @@
 package org.okarmus.game.controller;
 
 import org.apache.log4j.Logger;
-import org.okarmus.game.manager.GameManager;
+import org.okarmus.game.manager.game.GameManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
