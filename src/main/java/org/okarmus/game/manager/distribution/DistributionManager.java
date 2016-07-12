@@ -26,14 +26,13 @@ public class DistributionManager {
 		return game.getPlayerCards();
 	}
 
-	private Distribution createDistribution(Game game) {
-		Distribution dist = distributionBuilder.build(game);
-		return dist;
-	}
-
 	private Game findGame(int gameId) throws GameNotFoundException {
 		return context
 				.retrieveGame(gameId)
 				.orElseThrow(() -> new GameNotFoundException("Can not create game for:" + gameId));
+	}
+	
+	private Distribution createDistribution(Game game) {
+		return distributionBuilder.build(game);
 	}
 }

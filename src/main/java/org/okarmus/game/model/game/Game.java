@@ -7,7 +7,7 @@ import org.okarmus.game.model.player.PlayerType;
 
 public class Game {
 
-	private Player cpu1;
+	private Player cpu1;		//TODO we should think about modifying int somehow
 	private Player cpu2;
 	private Player user;
 	

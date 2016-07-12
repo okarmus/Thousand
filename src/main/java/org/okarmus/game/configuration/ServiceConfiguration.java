@@ -23,6 +23,5 @@ public class ServiceConfiguration {
 	@Bean
 	public DistributionBuilder distributionBuilder() {
 		return new DistributionBuilder();
-	}
-	
+	}	
 }

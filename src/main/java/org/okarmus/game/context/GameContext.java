@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Context
 public class GameContext {
+	
 	@Autowired
 	private AtomicInteger gameSequence;
 
@@ -29,7 +30,4 @@ public class GameContext {
 	public Optional<Game> retrieveGame(int gameId) {
 		return Optional.ofNullable(currentGames.get(gameId));
 	}
-	
-	
-	
 }

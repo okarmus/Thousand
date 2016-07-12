@@ -7,7 +7,8 @@ import org.okarmus.game.model.player.PlayerCards;
 public class Distribution {
 	
 	private Map<String,PlayerCards> playersCards;
-	
+	/*private PlayerCards prikup;*/
+		
 	
 	public PlayerCards getCardsForPlayer(String playerName) {
 		return playersCards.get(playerName);
