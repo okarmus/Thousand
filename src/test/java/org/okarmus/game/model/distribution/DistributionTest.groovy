@@ -10,25 +10,26 @@ class DistributionTest extends Specification {
 	
 	def "should return cards for player" () {
 		when:
+			def expectedCards = janekCards()
 			Distribution underTest = new Distribution()
-			underTest.setPlayersCards(cardsMap())
+			underTest.setPlayersCards(cardsMap(expectedCards))
 		then:
-			underTest.getCardsForPlayer('Janek') == janekCards()		
+			underTest.getCardsForPlayer('Janek') == expectedCards		
 	}
 	
-	def cardsMap() {
-		return [ Janek: janekCards(), Pawel: pawelCards(), maciek: maciekCards()]
+	def cardsMap(expectedCards) {
+		return [ Janek: expectedCards, Pawel: pawelCards(), maciek: maciekCards()]
 	}
 	
 	def janekCards() {
-		return new PlayerCards(playerCards: [new Card(color: Color.CLUBS, figure: Figure.KING), new Card(color: Color.HEARTS, figure: Figure.QUEEN)])
+		return new PlayerCards(cards: [new Card(color: Color.CLUBS, figure: Figure.KING), new Card(color: Color.HEARTS, figure: Figure.QUEEN)])
 	}
 	
 	def pawelCards() {
-		return new PlayerCards(playerCards: [new Card(color: Color.CLUBS, figure: Figure.QUEEN), new Card(color: Color.HEARTS, figure: Figure.ACE)])
+		return new PlayerCards(cards: [new Card(color: Color.CLUBS, figure: Figure.QUEEN), new Card(color: Color.HEARTS, figure: Figure.ACE)])
 	}
 	
 	def maciekCards() {
-		return new PlayerCards(playerCards: [new Card(color: Color.SPADES, figure: Figure.QUEEN), new Card(color: Color.SPADES, figure: Figure.QUEEN)])
+		return new PlayerCards(cards: [new Card(color: Color.SPADES, figure: Figure.QUEEN), new Card(color: Color.SPADES, figure: Figure.QUEEN)])
 	}
 }

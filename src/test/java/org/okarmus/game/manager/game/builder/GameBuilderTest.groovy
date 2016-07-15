@@ -13,6 +13,6 @@ class GameBuilderTest extends Specification{
 		when:
 			Game game = underTest.build(playerName)
 		then:
-			game.getUser().name == playerName
+			game.retrieveUserName() == playerName
 	}
 }

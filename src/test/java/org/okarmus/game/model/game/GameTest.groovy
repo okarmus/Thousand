@@ -7,6 +7,9 @@ import org.okarmus.game.model.distribution.Distribution;
 import org.okarmus.game.model.player.Player;
 import org.okarmus.game.model.player.PlayerCards
 import org.okarmus.game.model.player.PlayerType;
+import java.util.List
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import spock.lang.Specification
 
 class GameTest extends Specification {
@@ -19,44 +22,55 @@ class GameTest extends Specification {
 		when:
 			Game game = new Game(sampleName)
 		then:
-			game.getCpu1().name == cpu1Name
-			game.getCpu2().type == PlayerType.CPU
-			game.getCpu2().name == cpu2Name
-			game.getCpu2().type == PlayerType.CPU
-			game.getUser().name == sampleName
-			game.getUser().type == PlayerType.USER
+			game.retrieveUserName() == sampleName
+			def players = game.getPlayers()
+			players.size() == 3
 	}
 	
 	def "should create game from setters" () {
 		when:
+		def samplePlayers = samplePlayers()
 		Game game = new Game()
-		game.setCpu1(new Player("CPU1", PlayerType.CPU))
-		game.setCpu2(new Player("CPU2", PlayerType.CPU))
-		game.setUser(new Player(sampleName, PlayerType.USER))
+		game.setPlayers(samplePlayers)
 	then:
-		game.getCpu1().name == cpu1Name
-		game.getCpu2().type == PlayerType.CPU
-		game.getCpu2().name == cpu2Name
-		game.getCpu2().type == PlayerType.CPU
-		game.getUser().name == sampleName
-		game.getUser().type == PlayerType.USER
+		game.retrieveUserName() == sampleName
+		game.getPlayers() == samplePlayers
 	}
 	
 	def "should return cards for player" () {
 		given:
+			def sampleCards = sampleCards()
 			Distribution distribution = Mock()
-			distribution.getCardsForPlayer(sampleName) >> sampleCards()
+			distribution.getCardsForPlayer(sampleName) >> sampleCards
 			
 			Game game = new Game(sampleName)
 			game.setCurrentDist(distribution)
 			
 		when:
-			def returnedCards = game.getPlayerCards()
+			def returnedCards = game.retrieveUserCards()
 		then:
-			returnedCards == sampleCards()
+			returnedCards == sampleCards
+			game.getCurrentDist() == distribution
 	}
 	
+	def "should return list containing names of players"() {
+		given:
+			Game game = new Game(sampleName)
+		when:
+			def playerNames = game.retrievePlayerNames()
+		then:
+			playerNames.size() == 3
+			playerNames.contains(sampleName)
+			playerNames.contains(cpu1Name)
+			playerNames.contains(cpu2Name)
+	}
+	
+	
 	def sampleCards() {
-		return new PlayerCards(playerCards: [new Card(color: Color.HEARTS, figure: Figure.KING), new Card(color: Color.DIAMONDS, figure: Figure.TEN)])
+		return new PlayerCards(cards: [new Card(color: Color.HEARTS, figure: Figure.KING), new Card(color: Color.DIAMONDS, figure: Figure.TEN)])
+	}
+	
+	def samplePlayers() {
+		return Stream.of(new Player("CPU1", PlayerType.CPU), new Player("CPU2", PlayerType.CPU),new Player(sampleName, PlayerType.USER)).collect(Collectors.toList())
 	}
 }

@@ -7,15 +7,33 @@ import spock.lang.Specification
 
 class PlayerCardsTest extends Specification {
 
+	def sampleName = "Lamka"
+	def kingCard = new Card(color: Color.HEARTS, figure: Figure.KING)
+	def tenCard = new Card(color: Color.DIAMONDS, figure: Figure.TEN)
+	
 	def "should set player cards"() {
 		when:
 			PlayerCards playerCards = new PlayerCards()
-			playerCards.setPlayerCards(sampleCards())
+			playerCards.setCards(sampleCards())
+			playerCards.setPlayerName(sampleName)
 		then:
-			playerCards.getPlayerCards() == sampleCards()
+			playerCards.getCards() == sampleCards()
+			playerCards.getPlayerName() == sampleName
 	}
 	
 	def sampleCards() {
-		[new Card(color: Color.HEARTS, figure: Figure.KING), new Card(color: Color.DIAMONDS, figure: Figure.TEN)] as List<Card>
+		[kingCard, tenCard] as List<Card>
 	}
+	
+	def "should create player cards for player and add new card" () {
+		given:
+			PlayerCards playerCards = new PlayerCards(sampleName)
+		when:
+			playerCards.addCard(kingCard)
+			playerCards.addCard(tenCard)
+		then:
+			playerCards.getCards() == sampleCards()
+			playerCards.getPlayerName() == sampleName
+	}
+	
 }

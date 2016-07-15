@@ -34,7 +34,7 @@ class DistributionManagerTest extends Specification{
 		given:
 			Game game = game()
 			PlayerCards expectedCards = playerCards()
-			game.getPlayerCards() >> expectedCards
+			game.retrieveUserCards() >> expectedCards
 			Distribution distribution = distribution()
 			context.retrieveGame(sampleId) >> Optional.of(game)
 			distributionBuilder.build(game) >> distribution

@@ -54,9 +54,9 @@ class DistributionControllerTest  extends Specification{
 		expect:
 			mockMvc.perform(get(CREATE_URL, sampleId))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath('$.playerCards',hasSize(1)))
-				.andExpect(jsonPath('$.playerCards[0].color', is(Color.SPADES.toString())))
-				.andExpect(jsonPath('$.playerCards[0].figure',is(Figure.ACE.toString())))
+				.andExpect(jsonPath('$.cards',hasSize(1)))
+				.andExpect(jsonPath('$.cards[0].color', is(Color.SPADES.toString())))
+				.andExpect(jsonPath('$.cards[0].figure',is(Figure.ACE.toString())))
 	}
 	
 	def "should return precondition failed response"() {
@@ -68,6 +68,6 @@ class DistributionControllerTest  extends Specification{
 	}
 	
 	def playerCards() {
-		return new PlayerCards(playerCards: [new Card(color: Color.SPADES, figure: Figure.ACE)])
+		return new PlayerCards(cards: [new Card(color: Color.SPADES, figure: Figure.ACE)])
 	}
 }

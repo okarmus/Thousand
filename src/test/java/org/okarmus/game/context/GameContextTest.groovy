@@ -23,7 +23,7 @@ class GameContextTest extends Specification{
 	
 	def "should add new game and return id"(){
 		given:
-			Game expectedGame = new Game(cpu1: new Player(), cpu2: new Player(), user: new Player())
+			Game expectedGame = new Game(players: [new Player(), new Player(), new Player()])
 		when:
 			def actualId = underTest.addGame(expectedGame)
 			def actualGame = underTest.retrieveGame(actualId).get()

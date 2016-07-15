@@ -17,7 +17,7 @@ function createGameDistribution() {
 }
 
 function createDistributionCallback (data) {
-	var cardImages = createCardImages(data.playerCards);
+	var cardImages = createCardImages(data.cards);
 	var cardsDiv = $('#myCards');
 	for (var index in cardImages) {
 		var imagePath = "img/cards/" + cardImages[index];
@@ -49,7 +49,8 @@ function createGame(player){
 	$.ajax({
 		method: "POST",
 		url: "/game/create",
-		data: JSON.stringify(player),
+		//data: JSON.stringify(player),
+		data: player,
 		contentType:"application/json; charset=utf-8"
 	})
 	.done(function(data) {

@@ -23,7 +23,7 @@ public class DistributionManager {
 		Distribution dist = createDistribution(game);
 		
 		game.setCurrentDist(dist);
-		return game.getPlayerCards();
+		return game.retrieveUserCards();
 	}
 
 	private Game findGame(int gameId) throws GameNotFoundException {
