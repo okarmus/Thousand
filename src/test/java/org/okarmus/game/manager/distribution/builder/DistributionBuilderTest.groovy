@@ -40,11 +40,11 @@ class DistributionBuilderTest extends Specification {
 		then:
 			distribution.playersCards.containsKey(sampleUser)
 			def playerCards = distribution.playersCards.get(sampleUser)
-			playerCards.cards.size() == 7			
+			playerCards.cards.size() == 7
+			distribution.prikup.cards.size() == 3			
 	}
 	
 	def game() {
 		return new Game(players: [new Player(sampleUser, PlayerType.USER)])
 	}
-	
 }

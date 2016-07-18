@@ -5,7 +5,7 @@ import java.util.Random;
 public class CardRandomizer {
 	
 	private Random random;
-	private int cardsNumber;		//TODO this is cards number -1
+	private int cardsNumber;
 	
 	public CardRandomizer(Random random, int cardsNumber) {
 		this.random = random;

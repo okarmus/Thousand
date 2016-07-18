@@ -13,15 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/distribution")		//TODO such information should be set in properties
+@RequestMapping("/distribution")
 public class DistributionController {
 	private static final Logger LOG = Logger.getLogger(GameController.class);
 	
-	
 	@Autowired
 	DistributionManager manager;
-	
-	
 	
 	@RequestMapping("/{gameId}/create")
 	public HttpEntity<PlayerCards> createNewDistribution(@PathVariable int gameId) {

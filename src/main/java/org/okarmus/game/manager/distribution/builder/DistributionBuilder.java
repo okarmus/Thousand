@@ -1,7 +1,6 @@
 package org.okarmus.game.manager.distribution.builder;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.okarmus.game.manager.distribution.pile.CardsPile;
@@ -15,42 +14,33 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DistributionBuilder {
-	
-	public Distribution build(Game game) {
-		return distributeCards(game);
-	}
-	
-	@Lookup
-	protected CardsPile createCardsPile(){
-		//Spring will override this method
-		return null;
-	}
 
-	private Distribution distributeCards(Game game) {	// part of the logic should be moved to distriburtion
+	public Distribution build(Game game) {
 		CardsPile cardsPile = createCardsPile();
-		
+
 		List<PlayerCards> distributedCards = emptyDistributedCards(game);
 		Prikup prikup = new Prikup();
-		
+
 		int index = 0;
-		
 		while(cardsPile.hasNext()) {
 			Card card = cardsPile.next(); 
-			
-			if (!prikup.isComplete()) {					//this logic could be moved to distriburion
+
+			if (!prikup.isComplete()) {
 				prikup.addCard(card);
 			}else{
 				distributedCards.get(index).addCard(card);
-				index++;
-				index %= 3;
+				index = (index+1) % 3;
 			}
 		}
-		
-		Distribution distribution = new Distribution();
-		distribution.setPlayersCards(distributedCards.stream().collect(Collectors.toMap(p -> p.getPlayerName(), p -> p)));
-		
-		return distribution;
+
+		return new Distribution(distributedCards.stream().collect(Collectors.toMap(p -> p.getPlayerName(), p -> p)), prikup);
 	}
+
+	@Lookup
+	protected CardsPile createCardsPile(){
+		return null;
+	}
+
 
 	private List<PlayerCards> emptyDistributedCards(Game game) {
 		return game.retrievePlayerNames()
