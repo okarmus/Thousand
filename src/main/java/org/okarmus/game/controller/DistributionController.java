@@ -16,19 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/distribution")
 public class DistributionController {
 	private static final Logger LOG = Logger.getLogger(GameController.class);
-	
+
 	@Autowired
 	DistributionManager manager;
-	
+
 	@RequestMapping("/{gameId}/create")
 	public HttpEntity<PlayerCards> createNewDistribution(@PathVariable int gameId) {
 		LOG.info("New distribution should be created");
-		
-		try {
-			return new ResponseEntity<PlayerCards>(manager.createDistribution(gameId),HttpStatus.OK);
-		} catch (GameNotFoundException e) {
-			LOG.warn("Requested game can not be found", e);
-			return new ResponseEntity<PlayerCards>(HttpStatus.PRECONDITION_FAILED);
-		}
+
+		PlayerCards cards = manager.createDistribution(gameId).order();
+		return new ResponseEntity<PlayerCards>(cards,HttpStatus.OK);
 	}
 }

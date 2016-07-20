@@ -52,7 +52,7 @@ class DistributionManagerTest extends Specification{
 	}
 	
 	def distribution() {
-		return new Distribution()
+		return new Distribution(null, null)
 	}
 	
 	def playerCards() {

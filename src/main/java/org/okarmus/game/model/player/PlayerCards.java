@@ -2,8 +2,10 @@ package org.okarmus.game.model.player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.okarmus.game.model.card.Card;
+import org.okarmus.game.utils.comparator.PlayerComparator;
 
 public class PlayerCards {
 	
@@ -40,5 +42,19 @@ public class PlayerCards {
 	@Override
 	public String toString() {
 		return "PlayerCards [playerName=" + playerName + ", cards=" + cards + "]";
+	}
+
+	public PlayerCards order() {
+		PlayerCards playerCards = new PlayerCards();
+		playerCards.setPlayerName(playerName);
+		playerCards.setCards(sortCards());
+		
+		return playerCards;
+	}
+
+	private List<Card> sortCards() {
+		return cards.stream()
+			.sorted(new PlayerComparator())
+			.collect(Collectors.toList());
 	}
 }

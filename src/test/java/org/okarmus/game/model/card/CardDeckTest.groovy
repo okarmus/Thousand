@@ -6,13 +6,13 @@ class CardDeckTest extends Specification {
 	
 	def "should build card deck element" () {
 		given:
-			List<Card> cards = [new Card(Color.SPADES, Figure.ACE), new Card(Color.CLUBS, Figure.JACK), new Card(Color.HEARTS, Figure.NINE)]
+			List<Card> cards = [new Card(Color.SPADES, Figure.ACE, 11), new Card(Color.CLUBS, Figure.JACK, 2), new Card(Color.HEARTS, Figure.NINE, 0)]
 		when:
 			CardDeck deck = new CardDeck()
 			deck.setCards(cards)
 		then:
 			deck.getCards() == cards
-			deck.toString() == "CardDeck [cards=[Card [color=spades, figure=ace], Card [color=clubs, figure=jack], Card [color=hearts, figure=nine]]]"
+			deck.toString() == "CardDeck [cards=[Card [color=SPADES, figure=ACE, value=11], Card [color=CLUBS, figure=JACK, value=2], Card [color=HEARTS, figure=NINE, value=0]]]"
 	}
 }
 
