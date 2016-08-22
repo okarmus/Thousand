@@ -1,11 +1,11 @@
-package org.okarmus.game.model.negotiation;
+package org.okarmus.game.negotiation.model;
 
 import java.util.List;
 import java.util.Optional;
 
-import org.okarmus.game.manager.negotiation.NegotiationDecider;
 import org.okarmus.game.model.card.Card;
 import org.okarmus.game.model.player.Player;
+import org.okarmus.game.negotiation.NegotiationDecider;
 
 public class NegotiationPlayer {
 

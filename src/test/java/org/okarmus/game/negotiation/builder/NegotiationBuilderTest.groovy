@@ -1,4 +1,4 @@
-package org.okarmus.game.manager.negotiation.builder
+package org.okarmus.game.negotiation.builder
 
 import org.okarmus.game.model.game.Game
 import spock.lang.Specification

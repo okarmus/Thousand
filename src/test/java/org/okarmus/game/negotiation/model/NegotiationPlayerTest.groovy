@@ -1,14 +1,13 @@
-package org.okarmus.game.model.negotiation
+package org.okarmus.game.negotiation.model
 
-import java.util.List
+import static org.okarmus.game.model.player.PlayerType.USER
 
-import org.okarmus.game.manager.negotiation.NegotiationDecider;
 import org.okarmus.game.model.card.Card
 import org.okarmus.game.model.player.Player
 import org.okarmus.game.model.player.PlayerType
-import spock.lang.Specification
+import org.okarmus.game.negotiation.NegotiationDecider
 
-import static org.okarmus.game.model.player.PlayerType.USER
+import spock.lang.Specification
 
 class NegotiationPlayerTest extends Specification {
 	

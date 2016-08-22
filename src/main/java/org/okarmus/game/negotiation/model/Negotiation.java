@@ -1,4 +1,4 @@
- package org.okarmus.game.model.negotiation;
+ package org.okarmus.game.negotiation.model;
 
 import java.util.List;
 import java.util.stream.Collectors;

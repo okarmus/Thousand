@@ -2,9 +2,8 @@ package org.okarmus.game.context
 
 import java.util.concurrent.atomic.AtomicInteger
 
-import org.okarmus.game.model.game.Game
-import org.okarmus.game.model.negotiation.Negotiation;
-import org.okarmus.game.utils.exception.NegotiationNotFoundException;
+import org.okarmus.game.negotiation.model.Negotiation
+import org.okarmus.game.utils.exception.NegotiationNotFoundException
 
 import spock.lang.Specification
 

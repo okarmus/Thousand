@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.okarmus.game.model.game.Game;
-import org.okarmus.game.model.negotiation.Negotiation;
+import org.okarmus.game.negotiation.model.Negotiation;
 import org.okarmus.game.utils.annotation.Context;
 import org.okarmus.game.utils.exception.NegotiationNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
-package org.okarmus.game.manager.negotiation
+package org.okarmus.game.negotiation
 
-import org.okarmus.game.model.negotiation.Negotiation
+import org.okarmus.game.negotiation.model.Negotiation
+
 import spock.lang.Specification
 
 class NegotiationDeciderTest extends Specification {

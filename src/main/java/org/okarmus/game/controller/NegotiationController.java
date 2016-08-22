@@ -1,6 +1,6 @@
 package org.okarmus.game.controller;
 
-import org.okarmus.game.manager.negotiation.NegotiationManager;
+import org.okarmus.game.negotiation.NegotiationManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;

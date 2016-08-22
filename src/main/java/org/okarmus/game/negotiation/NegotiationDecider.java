@@ -1,8 +1,8 @@
-package org.okarmus.game.manager.negotiation;
+package org.okarmus.game.negotiation;
 
 import java.util.Optional;
 
-import org.okarmus.game.model.negotiation.Negotiation;
+import org.okarmus.game.negotiation.model.Negotiation;
 import org.springframework.stereotype.Component;
 
 @Component

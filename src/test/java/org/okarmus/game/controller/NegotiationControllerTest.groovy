@@ -1,10 +1,10 @@
 package org.okarmus.game.controller
 
+import static org.hamcrest.Matchers.*
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
-import static org.hamcrest.Matchers.*
 
-import org.okarmus.game.manager.negotiation.NegotiationManager
+import org.okarmus.game.negotiation.NegotiationManager
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders

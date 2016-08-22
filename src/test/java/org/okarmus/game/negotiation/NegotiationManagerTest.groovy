@@ -1,15 +1,15 @@
-package org.okarmus.game.manager.negotiation
+package org.okarmus.game.negotiation
+
+import static java.util.Arrays.asList
+import static org.okarmus.game.model.player.PlayerType.*
 
 import org.okarmus.game.context.GameContext
 import org.okarmus.game.context.NegotiationContext
-import org.okarmus.game.manager.negotiation.builder.NegotiationBuilder;
 import org.okarmus.game.model.game.Game
-import org.okarmus.game.model.negotiation.Negotiation
-import org.okarmus.game.model.negotiation.NegotiationPlayer;
 import org.okarmus.game.model.player.Player
-
-import static org.okarmus.game.model.player.PlayerType.*
-import static java.util.Arrays.asList
+import org.okarmus.game.negotiation.builder.NegotiationBuilder
+import org.okarmus.game.negotiation.model.Negotiation
+import org.okarmus.game.negotiation.model.NegotiationPlayer
 
 import spock.lang.Specification
 

@@ -1,7 +1,7 @@
-package org.okarmus.game.manager.negotiation.builder;
+package org.okarmus.game.negotiation.builder;
 
 import org.okarmus.game.model.game.Game;
-import org.okarmus.game.model.negotiation.Negotiation;
+import org.okarmus.game.negotiation.model.Negotiation;
 import org.springframework.stereotype.Service;
 
 @Service
