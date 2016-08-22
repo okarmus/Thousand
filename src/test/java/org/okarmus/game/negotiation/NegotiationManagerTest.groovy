@@ -54,7 +54,7 @@ class NegotiationManagerTest extends Specification{
 			cpu1.isNegotiating() >> true
 			cpu2.isNegotiating() >> false
 		when:
-			underTest.performUserRaise(negotiationId, score)
+			underTest.handleUserRaise(negotiationId, score)
 		then:
 			1 * user.raise(score)
 			1 * cpu1.decideOnNegotiation(negotiation, decider)
@@ -79,7 +79,6 @@ class NegotiationManagerTest extends Specification{
 			1 * cpu1.decideOnNegotiation(negotiation, decider)
 			1 * cpu2.decideOnNegotiation(negotiation, decider)
 	}
-	
 	
 	def negotiation() {
 		return new Negotiation(negotiationPlayer("Andrzej", USER), Arrays.asList(negotiationPlayer("cpu1", CPU), negotiationPlayer("cpu2", CPU)))

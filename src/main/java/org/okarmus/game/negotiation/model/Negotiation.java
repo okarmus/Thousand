@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.okarmus.game.negotiation.NegotiationDecider;
+
 public class Negotiation {
 	
 	private NegotiationPlayer user;
@@ -14,10 +16,22 @@ public class Negotiation {
 		this.cpus = cpus;
 	}
 
-	public List<NegotiationPlayer> findNegotiatingCpus() {
-		return cpus.stream()
-				.filter(NegotiationPlayer::isNegotiating)
-				.collect(Collectors.toList());
+	public void userRaise(int score) {
+		user.raise(score);
+	}
+	
+	public void cpusNegotiations(NegotiationDecider decider) {
+		cpus.stream()
+			.filter(NegotiationPlayer::isNegotiating)
+			.forEach((player) -> player.decideOnNegotiation(this, decider));
+	}
+	
+	public void userPass() {
+		user.pass();
+	}
+	
+	public boolean checkFinished() {
+		return playersStream().filter(NegotiationPlayer::isNegotiating).count() < 2;
 	}
 	
 	public Stream<NegotiationPlayer> playersStream() {

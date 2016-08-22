@@ -3,7 +3,8 @@ package org.okarmus.game.negotiation.model
 import java.util.stream.Collectors;
 import java.util.stream.Stream
 
-import org.apache.catalina.realm.JNDIRealm.User;
+import org.apache.catalina.realm.JNDIRealm.User
+import org.okarmus.game.negotiation.NegotiationDecider;
 
 import spock.lang.Specification
 
@@ -20,18 +21,55 @@ class NegotiationTest extends Specification {
 			negotiation.getCpus() == cpus
 	}
 	
-	def "should find negotiating cpus"() {
+	def "should perform user raise"() {
+		given:
+			NegotiationPlayer user = Mock()
+			List<NegotiationPlayer> cpus = Mock()
+		
+			Negotiation negotiation = new Negotiation(user, cpus)
+			def score = 120
+		when:
+			negotiation.userRaise(score)
+		then:
+			1 * user.raise(score)
+	}
+	
+	def "should perform user pass"() {
+		given:
+			NegotiationPlayer user = Mock()
+			List<NegotiationPlayer> cpus = Mock()
+		
+			Negotiation negotiation = new Negotiation(user, cpus)
+		when:
+			negotiation.userPass()
+		then:
+			1 * user.pass()
+	}
+	
+	def "should perform negotiation for cpus"() {
 		given:
 			NegotiationPlayer user = Mock()
 			def negotiating = createPlayer(true)
 			def notNegotiating = createPlayer(false)
 			List<NegotiationPlayer> cpus = [negotiating, notNegotiating]
-		when:
+			
 			Negotiation negotiation = new Negotiation(user, cpus)
+			NegotiationDecider decider = Mock()
+		when:
+			def negotiatingCpus = negotiation.cpusNegotiations(decider)
 		then:
-			def negotiatingCpus = negotiation.findNegotiatingCpus()
-			negotiatingCpus.size() == 1
-			negotiatingCpus.get(0) == negotiating
+			1 * negotiating.decideOnNegotiation(negotiation, decider)
+			0 * notNegotiating.decideOnNegotiation(negotiation, decider)
+	}
+	
+	def "should check if negotiation is finished"(Negotiation negotiation, result) { 	
+		expect:
+			negotiation.checkFinished() == result
+		where:
+			negotiation 																				 || result
+			new Negotiation(createPlayer(true), Arrays.asList(createPlayer(false), createPlayer(true)))	 || false
+			new Negotiation(createPlayer(false), Arrays.asList(createPlayer(false), createPlayer(true))) || true
+			new Negotiation(createPlayer(false), Arrays.asList(createPlayer(false), createPlayer(false)))|| true		
 	}
 	
 	def "should return player stream"() {

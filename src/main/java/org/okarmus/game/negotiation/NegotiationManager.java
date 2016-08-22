@@ -5,7 +5,6 @@ import org.okarmus.game.context.NegotiationContext;
 import org.okarmus.game.model.game.Game;
 import org.okarmus.game.negotiation.builder.NegotiationBuilder;
 import org.okarmus.game.negotiation.model.Negotiation;
-import org.okarmus.game.negotiation.model.NegotiationPlayer;
 import org.okarmus.game.utils.annotation.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,35 +28,24 @@ public class NegotiationManager {
 		return negotiationCtx.addNegotiation(negotiationBuilder.build(game));
 	}
 	
-	public void performUserRaise(int negotiationId, int score) {
+	public void handleUserRaise(int negotiationId, int score) {
 		Negotiation negotiation = findNegotiation(negotiationId);
-		negotiation.getUser().raise(score);			//TODO to moze tez powinno zostac przeniesione do obiektu negotiation
-		
-		performCpuNegotiations(negotiation);
+		negotiation.userRaise(score);
+		negotiation.cpusNegotiations(decider);
 	}
 	
 	public void performUserPass(int negotiationId) {
 		Negotiation negotiation = findNegotiation(negotiationId);
-		negotiation.getUser().pass();
-		
+		negotiation.userPass();
+
 		while(!checkFinished(negotiationId)) {
-			performCpuNegotiations(negotiation);
+			negotiation.cpusNegotiations(decider);
 		}
 	}
 	
 	public boolean checkFinished(int negotiationId) {
 		Negotiation negotiation = findNegotiation(negotiationId);
-		
-		long negotiatorsNumber = negotiation.playersStream()
-									.filter(NegotiationPlayer::isNegotiating)
-									.count();
-		return negotiatorsNumber < 2;
-	}
-	
-	private void performCpuNegotiations(Negotiation negotiation) {
-		negotiation.findNegotiatingCpus()
-			.stream()
-			.forEach((player) -> player.decideOnNegotiation(negotiation, decider));
+		return negotiation.checkFinished();
 	}
 	
 	private Negotiation findNegotiation(int id) {
