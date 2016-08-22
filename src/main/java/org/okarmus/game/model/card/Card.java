@@ -1,6 +1,5 @@
 package org.okarmus.game.model.card;
 
-
 public class Card {
 	private Color color;
 	private Figure figure;

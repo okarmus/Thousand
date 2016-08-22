@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.okarmus.game.model.card.Card;
-import org.okarmus.game.utils.comparator.PlayerComparator;
+import org.okarmus.game.utils.comparator.CardComparator;
 
 public class PlayerCards {
 	
@@ -54,7 +54,7 @@ public class PlayerCards {
 
 	private List<Card> sortCards() {
 		return cards.stream()
-			.sorted(new PlayerComparator())
+			.sorted(new CardComparator())
 			.collect(Collectors.toList());
 	}
 }

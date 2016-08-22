@@ -8,8 +8,4 @@ public enum Figure {
 	private Figure(String figure) {
 		this.figure = figure;
 	}
-
-	public String getFigure() {
-		return figure;
-	}
 }

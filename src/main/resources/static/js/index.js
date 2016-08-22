@@ -1,10 +1,14 @@
-$(document).ready(init());
 
 var gameId;
 
-function init() {
-	var name = prompt("What is your name?", "Andrzej");
+function submitName() {
+	var name = $("#playerName")[0].value;
 	createGame(name);
+	hidePopup();
+}
+
+function hidePopup() {
+	$("#abc").hide();
 }
 
 function createGameCallback(data) {

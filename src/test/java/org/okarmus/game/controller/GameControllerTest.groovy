@@ -2,6 +2,7 @@ package org.okarmus.game.controller
 
 import org.okarmus.game.manager.game.GameManager;
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.web.context.WebApplicationContext
 import org.springframework.http.MediaType
 import spock.lang.Specification
 
@@ -9,6 +10,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 import static org.hamcrest.Matchers.*
+
 
 class GameControllerTest extends Specification{
 	

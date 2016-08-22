@@ -17,7 +17,7 @@ class CardsPileTest extends Specification {
 	List<Card> cards;
 	CardRandomizer randomizer
 	
-	def setup() {
+	def setup()  {
 		randomizer = Mock()
 		underTest = new CardsPile(cards)
 		underTest.randomizer = randomizer
@@ -32,6 +32,17 @@ class CardsPileTest extends Specification {
 		expect:
 			uniqueReturns.stream()
 				.forEach {i -> assert underTest.next() == cards.get(i)}
+	}
+	
+	def "should return proper has next value"(pile, result) {
+		given:
+			underTest.pile = pile
+		expect:
+			underTest.hasNext() == result
+		where:
+			pile 			|| result
+			[] as Map		|| false
+			[12: new Card()]|| true		
 	}
 	
 	def randomizerReturns() {

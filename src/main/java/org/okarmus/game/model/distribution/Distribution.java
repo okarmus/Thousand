@@ -7,7 +7,9 @@ import org.okarmus.game.model.player.Prikup;
 
 public class Distribution {
 	
-	private Map<String,PlayerCards> playersCards;
+	private Map<String,PlayerCards> playersCards;				//TODO maybe it should be merged to common player data
+	//private Map<String,DistributionScore> distributionScores;
+	
 	private Prikup prikup;
 	
 	public Distribution(Map<String, PlayerCards> playersCards, Prikup prikup) {
@@ -19,19 +21,7 @@ public class Distribution {
 		return playersCards.get(playerName);
 	}
 
-	public Map<String, PlayerCards> getPlayersCards() {
-		return playersCards;
-	}
-
-	public void setPlayersCards(Map<String, PlayerCards> playersCards) {
-		this.playersCards = playersCards;
-	}
-
 	public Prikup getPrikup() {
 		return prikup;
-	}
-
-	public void setPrikup(Prikup prikup) {
-		this.prikup = prikup;
 	}
 }

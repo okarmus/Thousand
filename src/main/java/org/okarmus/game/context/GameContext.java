@@ -2,15 +2,19 @@ package org.okarmus.game.context;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.okarmus.game.model.game.Game;
 import org.okarmus.game.utils.annotation.Context;
+import org.okarmus.game.utils.exception.GameNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 @Context
 public class GameContext {
+	
+	@Value("${game.not.found}")
+	private String exceptionMessage;
 	
 	@Autowired
 	private AtomicInteger gameSequence;
@@ -27,7 +31,7 @@ public class GameContext {
 			return gameId;
 	}
 	
-	public Optional<Game> retrieveGame(int gameId) {
-		return Optional.ofNullable(currentGames.get(gameId));
+	public Game findGame(int gameId) throws GameNotFoundException {
+		return currentGames.computeIfAbsent(gameId, (id) -> {throw new GameNotFoundException(() -> String.format(exceptionMessage, id));});
 	}
 }

@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Scope;
 public class ThousandConfiguration {
 	
 	@Bean
+	@Scope("prototype")
 	public AtomicInteger gameSequence() {
 		return new AtomicInteger(1);
 	}
@@ -33,6 +34,6 @@ public class ThousandConfiguration {
 	
 	@Bean
 	public CardRandomizer cardRandomizer() {
-		return new CardRandomizer(new Random(), 24);	//TODO this value should be taken from properties(??)
+		return new CardRandomizer(new Random(), 24);
 	}
 }

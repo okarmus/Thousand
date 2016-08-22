@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import org.okarmus.game.model.card.Card;
 
-public class PlayerComparator implements Comparator<Card>{
+public class CardComparator implements Comparator<Card>{
 
 	@Override
 	public int compare(Card c1, Card c2) {

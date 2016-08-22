@@ -20,23 +20,14 @@ class DistributionManagerTest extends Specification{
 	def setup() {
 		underTest = new DistributionManager(context: context, distributionBuilder: distributionBuilder)
 	}
-	
-	def "should return error when there is no game with specified id"() {
-		given:
-			context.retrieveGame(sampleId) >> Optional.empty()
-		when:
-			underTest.createDistribution(sampleId)
-		then:
-			thrown(GameNotFoundException)
-	}
-	
+		
 	def "should build distribution"() {
 		given:
 			Game game = game()
 			PlayerCards expectedCards = playerCards()
 			game.retrieveUserCards() >> expectedCards
 			Distribution distribution = distribution()
-			context.retrieveGame(sampleId) >> Optional.of(game)
+			context.findGame(sampleId) >> game
 			distributionBuilder.build(game) >> distribution
 		when: 
 			PlayerCards actualCards = underTest.createDistribution(sampleId)

@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ThousandApplication {
 
 	public static void main(String[] args) {
-		
 		SpringApplication.run(ThousandApplication.class, args);
 	}
 }
