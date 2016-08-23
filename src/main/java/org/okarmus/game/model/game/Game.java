@@ -1,6 +1,6 @@
 package org.okarmus.game.model.game;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,23 +11,22 @@ import org.okarmus.game.model.player.PlayerType;
 
 public class Game {
 
-	private List<Player> players;
+	private Player user;
+	private List<Player> cpus;
 	
 	private Distribution currentDist;
 	
 	public Game() {}
 	
 	public Game(String userName) {
-		this.players = new ArrayList<>();
-		players.add(new Player("CPU1", PlayerType.CPU));
-		players.add(new Player("CPU2", PlayerType.CPU));
-		players.add(new Player(userName, PlayerType.USER));
+		this.user = new Player(userName, PlayerType.USER);
+		this.cpus = Arrays.asList(new Player("CPU1", PlayerType.CPU), new Player("CPU2", PlayerType.CPU));
 	}
 	
 	public List<String> retrievePlayerNames() {
-		return players.stream()
-					  .map(Player::getName).
-					  collect(Collectors.toList());
+		List<String> names = cpus.stream().map(Player::getName).collect(Collectors.toList());
+		names.add(user.getName());
+		return names;
 	}
 	
 	public PlayerCards retrieveUserCards() {
@@ -35,20 +34,16 @@ public class Game {
 	}
 	
 	public String retrieveUserName() {
-		return players
-			.stream()
-			.filter(player -> PlayerType.USER.equals(player.getType()))
-			.findFirst()
-			.get()
-			.getName();
+		return getUser().getName();
 	}
 	
-	public List<Player> getPlayers() {
-		return players;
+	public Player getUser() {
+		return user;
 	}
 
-	public void setPlayers(List<Player> players) {
-		this.players = players;
+	
+	public List<Player> getCpus() {
+		return cpus;
 	}
 
 	public Distribution getCurrentDist() {

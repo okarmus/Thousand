@@ -24,7 +24,7 @@ class GameContextTest extends Specification{
 	
 	def "should add new game and return id"(){
 		given:
-			Game expectedGame = new Game(players: [new Player(), new Player(), new Player()])
+			Game expectedGame = new Game(user: new Player(), cpus: [new Player(), new Player()])
 		when:
 			def actualId = underTest.addGame(expectedGame)
 			def actualGame = underTest.findGame(actualId)
@@ -36,7 +36,7 @@ class GameContextTest extends Specification{
 	def "should find a game with specified id"() {
 		given:
 			def gameId = 12
-			Game expectedGame = new Game(players: [new Player(), new Player(), new Player()])
+			Game expectedGame = new Game(user: new Player(), cpus: [new Player(), new Player()])
 			underTest.currentGames.put(12, expectedGame)
 		when:
 			def actualGame = underTest.findGame(gameId)
@@ -47,7 +47,7 @@ class GameContextTest extends Specification{
 	def "if game is found then exception should be thrown"() {
 		given:
 			def unknownId =13
-			Game expectedGame = new Game(players: [new Player(), new Player(), new Player()])
+			Game expectedGame = new Game(user: new Player(), cpus: [new Player(), new Player()])
 			underTest.currentGames.put(12, expectedGame)
 		when:
 			def actualGame = underTest.findGame(unknownId)

@@ -23,18 +23,18 @@ class GameTest extends Specification {
 			Game game = new Game(sampleName)
 		then:
 			game.retrieveUserName() == sampleName
-			def players = game.getPlayers()
-			players.size() == 3
+			game.getUser().name == sampleName
+			game.getUser().type == PlayerType.USER		
 	}
-	
-	def "should create game from setters" () {
+		
+	def "should set current distribution"() {
+		given:
+			Game game = new Game()
+			Distribution distribution = Mock()
 		when:
-		def samplePlayers = samplePlayers()
-		Game game = new Game()
-		game.setPlayers(samplePlayers)
-	then:
-		game.retrieveUserName() == sampleName
-		game.getPlayers() == samplePlayers
+			game.setCurrentDist(distribution)
+		then:
+			game.getCurrentDist() == distribution
 	}
 	
 	def "should return cards for player" () {

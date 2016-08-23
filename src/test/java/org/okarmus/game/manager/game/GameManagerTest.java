@@ -37,7 +37,7 @@ public class GameManagerTest {
 	
 	int expectedId = 12;
 	String playerName = "Jedrej";
-	Game game = new Game();
+	Game game = new Game(playerName);
 	
 	@Before
 	public void setUp() {

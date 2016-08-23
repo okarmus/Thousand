@@ -58,6 +58,6 @@ class DistributionBuilderTest extends Specification {
 	}
 	
 	def game() {
-		return new Game(players: [new Player(sampleUser, PlayerType.USER), new Player("cpu1", PlayerType.CPU), new Player("cpu2", PlayerType.CPU)])
+		return new Game(user: new Player(sampleUser, PlayerType.USER), cpus: [new Player("cpu1", PlayerType.CPU), new Player("cpu2", PlayerType.CPU)])
 	}	
 }
