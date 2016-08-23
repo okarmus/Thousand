@@ -29,7 +29,6 @@ class NegotiationControllerTest extends Specification{
 				  .build()	
 	}
 	
-	
 	def "should create negotiation and return proper negotiation id"() {
 		given:
 			def gameId = 12

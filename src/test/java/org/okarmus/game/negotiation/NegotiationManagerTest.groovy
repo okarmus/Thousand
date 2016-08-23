@@ -73,7 +73,7 @@ class NegotiationManagerTest extends Specification{
 			cpu1.isNegotiating() >>> [true, true, true, true, false, false]
 			cpu2.isNegotiating() >>> [true, true, false, false, false, false]
 		when:
-			underTest.performUserPass(negotiationId)
+			underTest.handleUserPass(negotiationId)
 		then:
 			1 * user.pass()
 			1 * cpu1.decideOnNegotiation(negotiation, decider)

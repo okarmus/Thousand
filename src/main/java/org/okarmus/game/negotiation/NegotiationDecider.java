@@ -12,11 +12,14 @@ public class NegotiationDecider {
 	int cpu2Bumps;
 
 	public Optional<Integer> decide(String playerName,Negotiation negotiation) {		//TODO this interface has to be changed
-		if (playerName.equals("CPU1")){
+		if (!negotiation.checkFinished() && playerName.equals("CPU1")){
 			return bumpsNrDecision(playerName, ++cpu1Bumps, 2, negotiation);
 			
 		}
-		return bumpsNrDecision(playerName, ++cpu2Bumps, 3, negotiation);
+		if (!negotiation.checkFinished() && playerName.equals("CPU2")) {
+			return bumpsNrDecision(playerName, ++cpu2Bumps, 3, negotiation);
+		}
+		return Optional.empty();
 	}
 	
 	private Optional<Integer> bumpsNrDecision(String playerName, int bumpsSoFar, int maxBumps, Negotiation negotiation) {

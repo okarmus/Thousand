@@ -34,7 +34,7 @@ public class NegotiationManager {
 		negotiation.cpusNegotiations(decider);
 	}
 	
-	public void performUserPass(int negotiationId) {
+	public void handleUserPass(int negotiationId) {
 		Negotiation negotiation = findNegotiation(negotiationId);
 		negotiation.userPass();
 
@@ -48,7 +48,7 @@ public class NegotiationManager {
 		return negotiation.checkFinished();
 	}
 	
-	private Negotiation findNegotiation(int id) {
+	public Negotiation findNegotiation(int id) {
 		return negotiationCtx.findNegotiation(id);
 	}
 }
