@@ -1,10 +1,15 @@
 package org.okarmus.game.negotiation;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.okarmus.game.context.GameContext;
 import org.okarmus.game.context.NegotiationContext;
 import org.okarmus.game.model.game.Game;
 import org.okarmus.game.negotiation.builder.NegotiationBuilder;
 import org.okarmus.game.negotiation.model.Negotiation;
+import org.okarmus.game.negotiation.model.NegotiationPlayer;
+import org.okarmus.game.negotiation.model.NegotiationResource;
 import org.okarmus.game.utils.annotation.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -50,5 +55,14 @@ public class NegotiationManager {
 	
 	public Negotiation findNegotiation(int id) {
 		return negotiationCtx.findNegotiation(id);
+	}
+	
+	public NegotiationResource retrieveStatus(int negotiationId) {
+		Negotiation negotiation = findNegotiation(negotiationId);
+		boolean finished = negotiation.checkFinished();
+		int userBet = negotiation.getUser().getPoints();
+		List<Integer> cpusBet = negotiation.getCpus().stream().map(NegotiationPlayer::getPoints).collect(Collectors.toList());
+		
+		return new NegotiationResource(userBet, cpusBet, finished);
 	}
 }

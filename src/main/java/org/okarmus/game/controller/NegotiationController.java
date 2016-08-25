@@ -2,6 +2,7 @@ package org.okarmus.game.controller;
 
 import org.okarmus.game.negotiation.NegotiationManager;
 import org.okarmus.game.negotiation.model.Negotiation;
+import org.okarmus.game.negotiation.model.NegotiationResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -24,17 +25,21 @@ public class NegotiationController {
 	}
 	
 	@RequestMapping("/raise/{negotiationId}/{score}")
-	public void userRaise(@PathVariable int negotiationId, @PathVariable int score) {
+	public HttpEntity<NegotiationResource> userRaise(@PathVariable int negotiationId, @PathVariable int score) {
 		negotiationManager.handleUserRaise(negotiationId, score);
+		NegotiationResource negotiationStatus = negotiationManager.retrieveStatus(negotiationId);
+		return new ResponseEntity<>(negotiationStatus, HttpStatus.OK);
 	}
 	
 	@RequestMapping("/pass/{negotiationId}")
-	public void userPass(@PathVariable int negotiationId) {
+	public HttpEntity<NegotiationResource> userPass(@PathVariable int negotiationId) {
 		negotiationManager.handleUserPass(negotiationId);
+		NegotiationResource negotiationStatus = negotiationManager.retrieveStatus(negotiationId);
+		return new ResponseEntity<>(negotiationStatus, HttpStatus.OK);
 	}
 	
 	@RequestMapping("/status/{negotiationId}")
-	public HttpEntity <Negotiation> displayStatus(@PathVariable int negotiationId) {
+	public HttpEntity<Negotiation> displayStatus(@PathVariable int negotiationId) {
 		return new ResponseEntity<>(negotiationManager.findNegotiation(negotiationId), HttpStatus.OK);
 	}
 }

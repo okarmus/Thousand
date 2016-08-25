@@ -1,10 +1,11 @@
 var gameId;
+var negotiationId;
 
 window.onload = function() { init(); };
 
 function init() {
 	var name = prompt("What is your name?", "Andrzej");
-	displayName(name)
+	displayName(name);
 	createGame(name);
 }
 
@@ -14,24 +15,25 @@ function displayName(name) {
 
 function createGameCallback(data) {
 	gameId = data;
-	createGameDistribution();
-}
-
-function createGameDistribution() {
 	createDistribution();
 }
 
 function createDistributionCallback (data) {
-	createCardsReverse("#cpu1Cards", 7)
-	createCardsReverse("#cpu2Cards", 7)
-	createCardsReverse("#boardCards", 3)
+	displayDstributedCards(data);
+	negotiate();
+}
+
+function displayDstributedCards(data) {
+	createCardsReverse("#cpu1Cards", 7);
+	createCardsReverse("#cpu2Cards", 7);
+	createCardsReverse("#boardCards", 3);
 	
 	var cardsDiv = $('#myCards');
 	var playerCards = data.cards;
-	for (var index in playerCards/*cardImages*/) {
+	for (var index in playerCards) {
 		var card = playerCards[index];
 		var imagePath = "img/cards/" + card.figure.toLowerCase() + "_of_" + card.color.toLowerCase() + ".png";
-		insertCard(cardsDiv, imagePath)
+		insertCard(cardsDiv, imagePath);
 	}
 }
 
@@ -46,7 +48,7 @@ function createCardsReverse(element, cardsNbr) {
 function insertCard(cardsDiv, cardsImg) {
 	var img = document.createElement('img');
 	img.src = cardsImg;	
-	$(cardsDiv).append(img)
+	$(cardsDiv).append(img);
 }
 
 
@@ -61,7 +63,6 @@ function createCardImages(playerCards) {
 	}
 	return images;
 }
-
 
 /*******************************/
 /*****APPLICATION CALLBACKS*****/
@@ -89,4 +90,3 @@ function createDistribution() {
 		createDistributionCallback(data)
 	});
 }
-
