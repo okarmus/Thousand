@@ -1,14 +1,15 @@
-
 var gameId;
 
-function submitName() {
-	var name = $("#playerName")[0].value;
+window.onload = function() { init(); };
+
+function init() {
+	var name = prompt("What is your name?", "Andrzej");
+	displayName(name)
 	createGame(name);
-	hidePopup();
 }
 
-function hidePopup() {
-	$("#abc").hide();
+function displayName(name) {
+	$('#playerName').html(name);
 }
 
 function createGameCallback(data) {
@@ -21,17 +22,33 @@ function createGameDistribution() {
 }
 
 function createDistributionCallback (data) {
-	var cardImages = createCardImages(data.cards);
+	createCardsReverse("#cpu1Cards", 7)
+	createCardsReverse("#cpu2Cards", 7)
+	createCardsReverse("#boardCards", 3)
+	
 	var cardsDiv = $('#myCards');
-	for (var index in cardImages) {
-		var imagePath = "img/cards/" + cardImages[index];
-		var img = document.createElement('img');
-		img.src = imagePath;
-		img.width="150";
-		img.height="250";
-		$(cardsDiv).append(img);
+	var playerCards = data.cards;
+	for (var index in playerCards/*cardImages*/) {
+		var card = playerCards[index];
+		var imagePath = "img/cards/" + card.figure.toLowerCase() + "_of_" + card.color.toLowerCase() + ".png";
+		insertCard(cardsDiv, imagePath)
 	}
 }
+
+function createCardsReverse(element, cardsNbr) {
+	var cardsDiv = $(element);
+	var reversePath = "img/cards_back.png";
+	for (i = 0; i < cardsNbr; i++) { 
+		insertCard(cardsDiv, reversePath);
+	}
+}
+
+function insertCard(cardsDiv, cardsImg) {
+	var img = document.createElement('img');
+	img.src = cardsImg;	
+	$(cardsDiv).append(img)
+}
+
 
 function createCardImages(playerCards) {
 	var images = []
@@ -53,7 +70,6 @@ function createGame(player){
 	$.ajax({
 		method: "POST",
 		url: "/game/create",
-		//data: JSON.stringify(player),
 		data: player,
 		contentType:"application/json; charset=utf-8"
 	})

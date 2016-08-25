@@ -4,67 +4,48 @@
 <meta charset="UTF-8">
 <title>Thousand card game</title>
 <link rel="stylesheet" href="css/index.css">
-<link rel="stylesheet" href="css/elements.css">
 
 </head>
 <body>
 
+	<div id="cardTable">
+		<div id="cpu1">
+			<div class=playerInfo>
+				<div class="playerDatas">
+					<div>Name: </div><div>Cpu1</div>
+					<div> Bet: </div><div>0</div><div> points</div>
+				</div>
+			</div>
+			<div id="cpu1Cards"></div>
+		</div>
 
-	<div id="abc">
-		<!-- Popup Div Starts Here -->
-		<div id="popupContact">
-			<!-- Contact Us Form -->
-			<form action="#" id="form" method="" name="form">
-				<h2>What is your name?</h2>
-				<hr>
-				<input id="playerName" name="playerName" placeholder="PlayerName" type="text" value="Andrzej">
-				<a href="javascript:%20submitName()" id="submit">Start game</a>
-			</form>
+		<div id="board">
+			<div id="boardCards"></div>
+		</div>
+
+		<div id="cpu2">
+			<div class=playerInfo>
+				<div class="playerDatas">
+					<div>Name: </div><div>Cpu2</div>
+					<div> Bet: </div><div>0</div><div> points</div>
+				</div>
+			</div>
+			<div id="cpu2Cards"></div>
+		</div>
+
+		<div id="player">
+			<div class=playerInfo>
+				<div class="playerDatas" class="">
+					<div>Name: </div><div id="playerName">Andrzej</div>
+					<div> Bet: </div><div>0</div><div> points</div>
+				</div>
+			</div>
+			<div id="myCards"></div>
 		</div>
 	</div>
-
-		<div id="cardTable">
-			<div id="cpu1">
-				<div id="cpu1Cards">
-					<img src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px">
-				</div>
-			</div>
-
-			<div id="board">
-				<div id="boardCards">
-					<img src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px">
-				</div>
-			</div>
-
-			<div id="cpu2">
-				<div id="cpu2Cards">
-					<img src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px"> <img
-						src="img/cards_back.png" width="150px" height="250px">
-				</div>
-			</div>
-
-			<div id="player">
-				<div id="myCards"></div>
-			</div>
+	
+	<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="js/ajaxCalls.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
 </body>
-
-<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="js/ajaxCalls.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-
 </html>

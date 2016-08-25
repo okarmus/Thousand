@@ -30,7 +30,7 @@
 	width: 800px;
 	height: 300px;
 	margin: 0 auto;
-	margin-top: 43%;
+	margin-top: 40%;
 }
 
 #player img {
@@ -55,8 +55,13 @@
 	margin: 0 auto;
  	margin-top: 0px;
  	margin-right:-120px;
+ 	
 }
 
+img {
+	width: 150px;
+ 	height: 250px;
+}
 
 #cpu1Cards, #cpu2Cards  {
 	-ms-transform: rotate(90deg); /* IE 9 */
@@ -71,4 +76,21 @@
 	
 	margin-top: 150px;
 	margin-left: 365px;
+	width: 450px;
+    height: 254px;
+}
+
+/* Css part regarding display of name and bet */
+.playerInfo {
+	font-size: 25px;
+	border-bottom: 3px solid #E50000;
+}
+
+.playerDatas>div{
+	display: inline;
+}
+
+.playerDatas {
+	display: table;
+	margin: 0 auto;
 }
