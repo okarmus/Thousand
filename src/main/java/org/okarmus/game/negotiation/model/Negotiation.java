@@ -45,6 +45,17 @@ public class Negotiation {
 				.getPoints();
 	}
 	
+	public void finish() {
+		findWinner().fillWinningInfo();
+	}
+	
+	private NegotiationPlayer findWinner() {
+		return playersStream()
+					.collect(Collectors.maxBy((p1, p2) -> p1.getPoints() - p2.getPoints()))
+					.get();
+	}
+	
+	
 	public NegotiationPlayer getUser() {
 		return user;
 	}

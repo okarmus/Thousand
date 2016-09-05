@@ -10,6 +10,7 @@ import org.okarmus.game.model.player.Player
 import org.okarmus.game.negotiation.builder.NegotiationBuilder
 import org.okarmus.game.negotiation.model.Negotiation
 import org.okarmus.game.negotiation.model.NegotiationPlayer
+import org.okarmus.game.negotiation.model.NegotiationResource
 
 import spock.lang.Specification
 
@@ -80,6 +81,46 @@ class NegotiationManagerTest extends Specification{
 			1 * cpu2.decideOnNegotiation(negotiation, decider)
 	}
 	
+	def "should retrieve negotiaton status"() {
+		given:
+			def finished = true
+			
+			def userPoints = 120
+			NegotiationPlayer user = mockedNegotiationPlayerWithPoints(userPoints)
+			
+			def cpu1Points = 100
+			NegotiationPlayer cpu1 = mockedNegotiationPlayerWithPoints(cpu1Points)
+			
+			def cpu2Points = 180
+			NegotiationPlayer cpu2 = mockedNegotiationPlayerWithPoints(cpu2Points)
+			
+			Negotiation negotiation = Mock()
+			negotiation.checkFinished() >> finished
+			negotiation.getUser() >> user
+			
+			negotiation.getCpus() >> [cpu1, cpu2]
+				
+			negotiationCtx.findNegotiation(negotiationId) >> negotiation
+		when:
+			NegotiationResource status = underTest.retrieveStatus(negotiationId);
+		then:	
+			status.finished
+			status.getUserBet() == userPoints
+			status.getCpusBet().size() == 2
+			status.getCpusBet().contains(cpu1Points)
+			status.getCpusBet().contains(cpu2Points)
+	}
+	
+	def "negotiation should be finished"() {
+		given:
+			Negotiation negotiation = Mock()
+			negotiationCtx.findNegotiation(negotiationId) >> negotiation
+		when:
+			underTest.finish(negotiationId)
+		then:
+		 1 * negotiation.finish()
+	}
+	
 	def negotiation() {
 		return new Negotiation(negotiationPlayer("Andrzej", USER), Arrays.asList(negotiationPlayer("cpu1", CPU), negotiationPlayer("cpu2", CPU)))
 	}
@@ -87,4 +128,13 @@ class NegotiationManagerTest extends Specification{
 	def negotiationPlayer(name, type) {
 		return new NegotiationPlayer(new Player(name, type), Collections.emptyList());
 	}
+	
+	def mockedNegotiationPlayerWithPoints(points) {
+		NegotiationPlayer player = Mock()
+		player.getPoints() >> points
+		return player;
+	}
+		
+	
+	
 }

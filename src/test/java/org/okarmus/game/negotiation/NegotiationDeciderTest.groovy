@@ -15,7 +15,7 @@ class NegotiationDeciderTest extends Specification {
 			def cpu2 = "CPU2"
 		
 			Negotiation negotiation = Mock()
-			negotiation.findMax() >>> [100, 110, 120, 130, 140, 150, 160]
+			negotiation.findMax() >>> [100, 110, 120, 130, 140, 140, 150, 160]
 				
 		expect:
 			assertDecisionPresent(underTest.decide(cpu1, negotiation), 110)			
@@ -24,9 +24,9 @@ class NegotiationDeciderTest extends Specification {
 			assertDecisionPresent(underTest.decide(cpu2, negotiation), 140)
 			assertDecisionAbsent(underTest.decide(cpu1, negotiation))
 			assertDecisionPresent(underTest.decide(cpu2, negotiation), 150)
+			assertDecisionPresent(underTest.decide(cpu2, negotiation), 160)
 			assertDecisionAbsent(underTest.decide(cpu2, negotiation))
 	}
-	
 	
 	def assertDecisionPresent(Optional<Integer> decision, score) {
 		decision.isPresent()
@@ -36,6 +36,4 @@ class NegotiationDeciderTest extends Specification {
 	def assertDecisionAbsent(Optional<Integer> decision) {
 		!decision.isPresent()
 	}
-	
-
 }

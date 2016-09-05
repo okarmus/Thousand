@@ -7,6 +7,8 @@ class PlayerTest extends Specification {
 	def sampleName = "Pawel"
 	def sampleType = PlayerType.USER
 	def sampleScore = 1000
+	def negotiationWinner = true
+	def requiredPoints = 170
 	
 	def "should create player from constructor" () {
 		when:
@@ -22,9 +24,13 @@ class PlayerTest extends Specification {
 			player.setName(sampleName)
 			player.setType(sampleType)
 			player.setScore(sampleScore)
+			player.setNegotiationWinner(negotiationWinner)
+			player.setRequiredPoints(requiredPoints)
 		then:
 			player.getName() == sampleName
 			player.getType() == sampleType
 			player.getScore() == sampleScore
+			player.isNegotiationWinner() == negotiationWinner
+			player.getRequiredPoints() == requiredPoints
 	}
 }

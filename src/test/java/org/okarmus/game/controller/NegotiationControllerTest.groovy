@@ -13,7 +13,7 @@ import spock.lang.Specification
 
 class NegotiationControllerTest extends Specification{
 
-	def url = "/negotiation/{gameId}/create"
+	def url = "/negotiation/create/{gameId}"
 	
 	MockMvc mockMvc
 	NegotiationController underTest

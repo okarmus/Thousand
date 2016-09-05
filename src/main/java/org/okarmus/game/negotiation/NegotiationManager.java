@@ -43,14 +43,9 @@ public class NegotiationManager {
 		Negotiation negotiation = findNegotiation(negotiationId);
 		negotiation.userPass();
 
-		while(!checkFinished(negotiationId)) {
+		while(!negotiation.checkFinished()) {
 			negotiation.cpusNegotiations(decider);
 		}
-	}
-	
-	public boolean checkFinished(int negotiationId) {
-		Negotiation negotiation = findNegotiation(negotiationId);
-		return negotiation.checkFinished();
 	}
 	
 	public Negotiation findNegotiation(int id) {
@@ -64,5 +59,10 @@ public class NegotiationManager {
 		List<Integer> cpusBet = negotiation.getCpus().stream().map(NegotiationPlayer::getPoints).collect(Collectors.toList());
 		
 		return new NegotiationResource(userBet, cpusBet, finished);
+	}
+	
+	public void finish(int negotiationId) {
+		Negotiation negotiation = findNegotiation(negotiationId);
+		negotiation.finish();
 	}
 }

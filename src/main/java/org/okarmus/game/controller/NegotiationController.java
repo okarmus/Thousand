@@ -38,6 +38,13 @@ public class NegotiationController {
 		return new ResponseEntity<>(negotiationStatus, HttpStatus.OK);
 	}
 	
+	@RequestMapping("/finish/{neogotiationId}")
+	public HttpEntity<String> finishNegotiation(@PathVariable int negotiationId) {
+		negotiationManager.finish(negotiationId);	
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	/*This is just for development purpose and should be removed when negotiation algorithm is implemented*/
 	@RequestMapping("/status/{negotiationId}")
 	public HttpEntity<Negotiation> displayStatus(@PathVariable int negotiationId) {
 		return new ResponseEntity<>(negotiationManager.findNegotiation(negotiationId), HttpStatus.OK);

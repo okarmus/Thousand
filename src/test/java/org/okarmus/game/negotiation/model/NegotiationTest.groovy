@@ -99,7 +99,28 @@ class NegotiationTest extends Specification {
 		then:
 			actualValue == expectedValue
 	}
-
+	
+	def "should finish negotiation and designate winner"() {
+		given:
+			def userPoints = 180
+			NegotiationPlayer user = Mock() 
+			user.getPoints() >> userPoints
+			
+			def cpu1Points = 120
+			NegotiationPlayer cpu1 = Mock()
+			cpu1.getPoints() >> cpu1Points
+			
+			def cpu2Points = 140
+			NegotiationPlayer cpu2 = Mock()
+			cpu2.getPoints() >> cpu2Points
+			
+			Negotiation underTest = new Negotiation(user, Arrays.asList(cpu1, cpu2))
+		when:
+			underTest.finish()
+		then:
+			1 * user.fillWinningInfo()
+	}
+	
 	def negotiationPlayer(points) {
 		def player = new NegotiationPlayer(null, null)
 		player.points = points

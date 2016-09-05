@@ -13,7 +13,7 @@ class NegotiationPlayerTest extends Specification {
 	
 	def name = "Johny"
 	def type = USER
-	def player = new Player(name, type)
+	Player player = new Player(name, type)
 	def cards = [new Card(), new Card()]
 	
 	def points = 150
@@ -62,5 +62,17 @@ class NegotiationPlayerTest extends Specification {
 			underTest.raise(points)
 		then:
 			underTest.getPoints() == points
+	}
+	
+	def "should fill winning info in player"() {
+		given:
+			def points = 180
+			NegotiationPlayer underTest = new NegotiationPlayer(player, cards)
+			underTest.points = points
+		when:
+			underTest.fillWinningInfo()
+		then:
+			player.getRequiredPoints() == points
+			player.isNegotiationWinner()	
 	}
 }

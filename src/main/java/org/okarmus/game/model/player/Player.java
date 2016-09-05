@@ -6,6 +6,9 @@ public class Player {
 	private PlayerType type;
 	private int score;
 	
+	private boolean negotiationWinner;
+	private int requiredPoints;
+	
 	public Player() {}
 
 	public Player(String name, PlayerType type) {
@@ -35,5 +38,21 @@ public class Player {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public boolean isNegotiationWinner() {
+		return negotiationWinner;
+	}
+
+	public void setNegotiationWinner(boolean negotiationWinner) {
+		this.negotiationWinner = negotiationWinner;
+	}
+
+	public int getRequiredPoints() {
+		return requiredPoints;
+	}
+
+	public void setRequiredPoints(int requiredPoints) {
+		this.requiredPoints = requiredPoints;
 	}
 }

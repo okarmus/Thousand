@@ -31,6 +31,11 @@ public class NegotiationPlayer {
 		}
 	}
 	
+	public void fillWinningInfo() {
+		player.setNegotiationWinner(true);
+		player.setRequiredPoints(points);
+	}
+	
 	public void raise(int points) {
 		this.points = points;
 	}
